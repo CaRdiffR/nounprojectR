@@ -58,7 +58,7 @@ np_oauth <- function(key, secret, url){
   # this is in the package but I can't make the file paths work...
   reticulate::source_python("../nounprojectR/python_script/just_authenticate_function.py")
   
-  output <- noun_auth(key, secret, authorisation_url)
+  output <- noun_auth(key, secret, url)
   
   return(output)
 }
@@ -113,7 +113,6 @@ get_icon_by_term <- function(key, secret, term,
   # and writes JSON file...
   # this is in the package but I can't make the file paths work...
   reticulate::source_python("../nounprojectR/python_script/just_authenticate_function.py")
-  
   output <- noun_auth(key, secret, authorisation_url)
   return(output)
   # output is List of 2, generated at and a list of icons
