@@ -2,7 +2,7 @@
 % Please edit documentation in R/np_oauth.R
 \name{np_oauth}
 \alias{np_oauth}
-\title{Title}
+\title{Get an icon by number using Python authentication}
 \usage{
 np_oauth(key, secret, icon_num)
 }
@@ -15,8 +15,20 @@ np_oauth(key, secret, icon_num)
 you would like to download}
 }
 \value{
-JSON object with links to icons
+list (JSON object) with links to icons
 }
 \description{
-Title
+Get an icon by number using Python authentication
+}
+\examples{
+key <- my_key
+secret <- my_secret
+icon_number <- 1
+output <- np_oauth(key, secret, icon_number) # output is a list
+# access PNG using image_read() from magick
+img2 <- magick::image_read(output$icon$preview_url)
+img2  # show image - for icon_number of 1 it is a man putting litter in a bin
+
+
+
 }
