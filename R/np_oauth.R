@@ -1,3 +1,27 @@
+
+#' Make simple authorisation url for one icon number
+#'
+#' @param icon_num a number of the icon you want to download
+#'
+#' @return the url assembled. 
+#' @export
+#'
+#' @examples
+#' url <- make_icon_num_url(1)
+make_icon_num_url <- function(icon_num){
+  # objective here is to assemble from the Noun Project API
+  # assumption is that you know the number of the icon that you want...
+  # an example is icon number 1870346
+  # https://thenounproject.com/search/?q=female%20executive&i=1870346
+  
+  base_url <- "http://api.thenounproject.com/icon/"
+  authorisation_url <- paste0(base_url, icon_num)
+  return(authorisation_url)
+}
+
+
+
+
 #' Get an icon by number using Python authentication
 #'
 #' @param key provided when you register an app on Noun Project website 
@@ -19,18 +43,9 @@
 #' 
 #' 
 #' 
-np_oauth <- function(key, secret, icon_num){
+np_oauth <- function(key, secret, url){
   # objective here is to download the SVG file from the Noun Project API
   # assumption is that you know the number of the icon that you want...
-  
-  # complication: some icons seem to only have PNG; some have both PNG and SVG
-  
-  # an example is icon number 1870346
-  # https://thenounproject.com/search/?q=female%20executive&i=1870346
-  
-  base_url <- "http://api.thenounproject.com/icon/"
-  authorisation_url <- paste0(base_url, icon_num)
-  
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
