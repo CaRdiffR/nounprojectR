@@ -4,7 +4,7 @@
 \alias{np_oauth}
 \title{Get an icon by number using Python authentication}
 \usage{
-np_oauth(key, secret, icon_num)
+np_oauth(key, secret, url)
 }
 \arguments{
 \item{key}{provided when you register an app on Noun Project website}

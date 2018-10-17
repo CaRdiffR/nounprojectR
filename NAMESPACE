@@ -2,6 +2,5 @@
 
 export(get_icon_by_term)
 export(get_pngs_and_show)
+export(make_icon_num_url)
 export(np_oauth)
-exportPattern("^[^\\.]")
-
