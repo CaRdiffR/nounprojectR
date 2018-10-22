@@ -43,13 +43,13 @@ make_icon_num_url <- function(icon_num){
 #' 
 #' 
 #' 
-np_oauth <- function(key, secret, url){
+np_oauth <- function(key, secret, icon_num, python_path = Sys.which("python")){
   # objective here is to download the SVG file from the Noun Project API
   # assumption is that you know the number of the icon that you want...
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
-  reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6",
+  reticulate::use_python(python_path,
     required = TRUE)
   reticulate::py_available(initialize = TRUE)
   
@@ -105,7 +105,7 @@ get_icon_by_term <- function(key, secret, term,
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
-  reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6",
+  reticulate::use_python(python_path,
     required = TRUE)
   reticulate::py_available(initialize = TRUE)
   
@@ -142,4 +142,3 @@ get_pngs_and_show <- function(icon_lists){
   }
   return(png_images)
 }     
-
