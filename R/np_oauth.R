@@ -1,23 +1,43 @@
+# create app for httr
+# to make this work - generate keys and put in file
+nouns_app <- httr::oauth_app("nouns_api",
+  Sys.getenv("NOUNS_API_KEY"),
+  Sys.getenv("NOUNS_API_SECRET"))
 
-#' Make simple authorisation url for one icon number
+#' Access Noun Project API with authorisation
 #'
-#' @param icon_num a number of the icon you want to download
-#'
-#' @return the url assembled. 
+#' @param endpoint 
+#' @param baseurl url for the Noun Project API
+#' @param app httr app that supplies the authorisation including key and
+#' signature
+#'#'
+#' @return JSON object
 #' @export
 #'
 #' @examples
-#' url <- make_icon_num_url(1)
-make_icon_num_url <- function(icon_num){
-  # objective here is to assemble from the Noun Project API
-  # assumption is that you know the number of the icon that you want...
-  # an example is icon number 1870346
-  # https://thenounproject.com/search/?q=female%20executive&i=1870346
-  
-  base_url <- "http://api.thenounproject.com/icon/"
-  authorisation_url <- paste0(base_url, icon_num)
-  return(authorisation_url)
+#' 
+#' 
+#' 
+get_nouns_api <- function(endpoint, 
+  baseurl = "http://api.thenounproject.com/", 
+  app = nouns_app) {
+  url <- httr::modify_url(baseurl, path = endpoint)
+  info <- httr::oauth_signature(url, app = app)
+  header_oauth <- httr::oauth_header(info)
+  httr::GET(url, header_oauth)
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,17 +46,16 @@ make_icon_num_url <- function(icon_num){
 #'
 #' @param key provided when you register an app on Noun Project website 
 #' @param secret provided when you register an app on Noun Project website
-#' @param icon_num number on the Noun Project website that corresponds to an icon that 
-#' you would like to download
+#' @param url url created by make_icon_num_url() function.
 #'
 #' @return list (JSON object) with links to icons
-#' @export
 #'
 #' @examples
 #' key <- my_key
 #' secret <- my_secret
 #' icon_number <- 1
-#' output <- np_oauth(key, secret, icon_number) # output is a list
+#' url <- make_icon_num_url(icon_number)
+#' output <- np_oauth(key, secret, url) # output is a list
 #' # access PNG using image_read() from magick
 #' img2 <- magick::image_read(output$icon$preview_url)
 #' img2  # show image - for icon_number of 1 it is a man putting litter in a bin
@@ -49,7 +68,7 @@ np_oauth <- function(key, secret, url){
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
-  reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6",
+  reticulate::use_python(Sys.which("python3.6"),
     required = TRUE)
   reticulate::py_available(initialize = TRUE)
   
@@ -77,7 +96,6 @@ np_oauth <- function(key, secret, url){
 #' @return gives a list of image details including urls from which they can be
 #' accessed
 #' 
-#' @export
 #'
 #' @examples
 #' key <- my_key
@@ -120,26 +138,4 @@ get_icon_by_term <- function(key, secret, term,
   # locations fail after time...
 }
 
-#' Download PNG for the icons in a list from get_icon_by_term() 
-#'
-#' @param icon_lists List of details about icons from Noun Project supplied by
-#' the function get_icon_by_term() (may be useful for other functions too)
-#'
-#' @return group of images in a PNG format
-#' @export
-#'
-#' @examples
-#' elephants <- get_pngs_and_show(icon_lists)  # download icons
-#' magick::image_append(elephants)  # show icons - two elephants
-
-get_pngs_and_show <- function(icon_lists){
-  # they all contain PNGs - can be downloaded using image_read() from magick
-  png_images <- magick::image_read(icon_lists$icons[[1]]$preview_url)
-  icons <- NULL
-  for(i in 2:length(icon_lists$icons)){
-    icons <- magick::image_read(icon_lists$icons[[i]]$preview_url)
-    png_images <- c(png_images, icons)
-  }
-  return(png_images)
-}     
 
