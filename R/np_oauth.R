@@ -62,13 +62,13 @@ get_nouns_api <- function(endpoint,
 #' 
 #' 
 #' 
-np_oauth <- function(key, secret, url){
+np_oauth <- function(key, secret, icon_num, python_path = Sys.which("python")){
   # objective here is to download the SVG file from the Noun Project API
   # assumption is that you know the number of the icon that you want...
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
-  reticulate::use_python(Sys.which("python3.6"),
+  reticulate::use_python(python_path,
     required = TRUE)
   reticulate::py_available(initialize = TRUE)
   
@@ -123,7 +123,7 @@ get_icon_by_term <- function(key, secret, term,
   # I can't get the authorisation to work in R but I can in python...
   # use this to make it work...
   # you need to add the reference to your python 3.6
-  reticulate::use_python("/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6",
+  reticulate::use_python(python_path,
     required = TRUE)
   reticulate::py_available(initialize = TRUE)
   
@@ -138,4 +138,25 @@ get_icon_by_term <- function(key, secret, term,
   # locations fail after time...
 }
 
+#' Download PNG for the icons in a list from get_icon_by_term() 
+#'
+#' @param icon_lists List of details about icons from Noun Project supplied by
+#' the function get_icon_by_term() (may be useful for other functions too)
+#'
+#' @return group of images in a PNG format
+#' @export
+#'
+#' @examples
+#' elephants <- get_pngs_and_show(icon_lists)  # download icons
+#' magick::image_append(elephants)  # show icons - two elephants
 
+get_pngs_and_show <- function(icon_lists){
+  # they all contain PNGs - can be downloaded using image_read() from magick
+  png_images <- magick::image_read(icon_lists$icons[[1]]$preview_url)
+  icons <- NULL
+  for(i in 2:length(icon_lists$icons)){
+    icons <- magick::image_read(icon_lists$icons[[i]]$preview_url)
+    png_images <- c(png_images, icons)
+  }
+  return(png_images)
+} 
