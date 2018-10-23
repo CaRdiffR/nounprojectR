@@ -1,6 +1,3 @@
-# make endpoints
-
-
 #' Making the endpoint for searching Noun Project by Term
 #'
 #' @param term 
@@ -19,13 +16,20 @@
 #' get_pngs_and_show(result)
 
 make_term_endpoint <- function(term,
-  limit_to_public_domain = 1,
-  num_of_imgs = 2,
-  offset = 0){
-
-    term_url <- paste0("icons/", term, "?limit_to_public_domain=",
-      limit_to_public_domain, "&limit=",num_of_imgs, "&offset=", offset)
-    return(term_url)
+                               limit_to_public_domain = 1,
+                               num_of_imgs = 2,
+                               offset = 0) {
+  term_url <- paste0(
+    "icons/",
+    term,
+    "?limit_to_public_domain=",
+    limit_to_public_domain,
+    "&limit=",
+    num_of_imgs,
+    "&offset=",
+    offset
+  )
+  return(term_url)
 }
 
 
