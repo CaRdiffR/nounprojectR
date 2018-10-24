@@ -4,8 +4,7 @@
 \alias{get_nouns_api}
 \title{Access Noun Project API with authorisation}
 \usage{
-get_nouns_api(endpoint, baseurl = "http://api.thenounproject.com/",
-  appname)
+get_nouns_api(endpoint, baseurl = "http://api.thenounproject.com/")
 }
 \arguments{
 \item{endpoint}{}

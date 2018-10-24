@@ -12,10 +12,9 @@
 #' 
 #' 
 get_nouns_api <- function(endpoint,
-                          baseurl = "http://api.thenounproject.com/",
-                          appname) {
+                          baseurl = "http://api.thenounproject.com/") {
   nouns_app <- httr::oauth_app(
-    appname = appname,
+    appname = Sys.getenv("NOUNS_API_APPNAME"),
     key = Sys.getenv("NOUNS_API_KEY"),
     secret = Sys.getenv("NOUNS_API_SECRET")
   )

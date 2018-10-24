@@ -104,3 +104,22 @@ get_icon_by_term <- function(key,
   # inside icons is a List of
   # locations fail after time...
 }
+
+#' Make simple authorisation url for one icon number
+#'
+#' @param icon_num a number of the icon you want to download
+#'
+#' @return the url assembled. 
+#'
+#' @examples
+#' url <- make_icon_num_url(1)
+make_icon_num_url <- function(icon_num){
+  # objective here is to assemble from the Noun Project API
+  # assumption is that you know the number of the icon that you want...
+  # an example is icon number 1870346
+  # https://thenounproject.com/search/?q=female%20executive&i=1870346
+  
+  base_url <- "http://api.thenounproject.com/icon/"
+  authorisation_url <- paste0(base_url, icon_num)
+  return(authorisation_url)
+}
