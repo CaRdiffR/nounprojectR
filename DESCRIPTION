@@ -7,9 +7,7 @@ Depends: R (>= 3.5.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: covr,
-    testthat,
-    knitr,
-    rmarkdown,
+Suggests: covr, testthat, knitr, rmarkdown,
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
+Imports: magick,httr,reticulate
