@@ -3,4 +3,6 @@
 export(get_nouns_api)
 export(get_png)
 export(get_pngs_and_show)
+export(make_id_endpoint)
 export(make_term_endpoint)
+export(np_credentials)
