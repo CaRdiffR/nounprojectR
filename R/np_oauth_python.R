@@ -60,7 +60,7 @@ np_oauth <- function(key, secret, icon_num, python_path = Sys.which("python")){
 #' icon_lists <- get_icon_by_term(term)  # gets details of two icons
 #' elephants <- get_pngs_and_show(icon_lists)  # download icons
 #' magick::image_append(elephants)  # show icons - two elephants
-get_icon_by_term <- function(key,
+get_icon_by_term_python <- function(key,
                              secret,
                              term,
                              num_of_imgs = 2,
