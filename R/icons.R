@@ -18,4 +18,20 @@ get_icon_by_term <- function(term, num_of_imgs=4, limit_to_public_domain=1, offs
   resp <- get_nouns_api(term_ep)
   httr::content(resp)
 }
-  
+
+#' Display icon
+#'
+#' @param icon_number character or string with icon code eg. 13094
+#'
+#' @return image details and shows image in viewer
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' display_icon(13094)
+#' }
+display_icon <- function(icon_number) {
+  icon_number <- as.character(icon_number)
+  res <- get_nouns_api(paste0("icon/", icon_number)) 
+  get_png(res)
+}
