@@ -68,7 +68,7 @@ nounAddin <- function() {
                  obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
                    icons_selection <<- c(icons_selection, x$id)
                    output$selection <- renderText({ icons_selection })
-                   showNotification(paste(x$id, "selected"))
+                   showNotification(paste(x$id, "selected"), duration=2)
                  })
                  create_image_div(x$id, x$url, img_size)
                 }
