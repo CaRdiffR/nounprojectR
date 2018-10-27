@@ -16,7 +16,21 @@
 get_icon_by_term <- function(term, num_of_imgs=4, limit_to_public_domain=1, offset=0) {
   term_ep <- make_term_endpoint(term, limit_to_public_domain, num_of_imgs, offset)
   resp <- get_nouns_api(term_ep)
+  # check response
+  if (httr::status_code(resp) != 200)
+    stop("NounProject API error - most likely invalid search term given.")
   httr::content(resp)
+}
+
+#' Get icons urls
+#'
+#' @param icon_list list of icons from \code{get_icon_by_term}
+#'
+#' @return list with field .$url containing url and
+#' .$id with icon id as character
+#' @export
+get_icons_urls <- function(icon_list) {
+  lapply(icon_list$icons, function(x) list(url=x$preview_url, id=x$id))
 }
 
 #' Display icon

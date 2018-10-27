@@ -21,13 +21,3 @@ get_pngs_and_show <- function(icon_lists) {
   return(png_images)
 }
 
-#' Get icons urls
-#'
-#' @param icon_list list of icons from \code{get_icon_by_term}
-#'
-#' @return vector with icons urls
-#' @export
-get_icons_urls <- function(icon_list) {
-  sapply(icon_list$icons, function(x) x$preview_url)
-}
-
