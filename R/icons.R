@@ -5,7 +5,7 @@
 #' @param limit_to_public_domain enter 0 for NO or 1 for YES (default YES)
 #' @param offset how many images would you like to skip (default 0)
 #'
-#' @return ives a list of image details including urls from which they can be
+#' @return gives a list of image details including urls from which they can be
 #' accessed
 #' @export
 #'
@@ -17,8 +17,13 @@ get_icon_by_term <- function(term, num_of_imgs=4, limit_to_public_domain=1, offs
   term_ep <- make_term_endpoint(term, limit_to_public_domain, num_of_imgs, offset)
   resp <- get_nouns_api(term_ep)
   # check response
-  if (httr::status_code(resp) != 200)
-    stop("NounProject API error - most likely invalid search term given.")
+  if (httr::status_code(resp) == 403)
+    stop(paste("NounProject API error - Permission denied.",
+               "Have you set your credentials using np_credentials() function?"))
+  if (httr::status_code(resp) != 200) {
+    warning("NounProject API error - most likely invalid search term given.")
+    return(list())
+  }
   httr::content(resp)
 }
 

@@ -1,6 +1,3 @@
-library(shiny)
-library(miniUI)
-
 # Supporting functions
 create_image_div <- function(id, url, img_size) {
   div(style = "display:inline-block;margin:5px;",
@@ -12,7 +9,10 @@ create_image_div <- function(id, url, img_size) {
 
 # Main addin function
 nounAddin <- function() {
-  
+  library(shiny)
+  library(miniUI)
+  library(nounprojectR)
+
   ui <- miniPage(
     gadgetTitleBar("Noun Project Icons Search"),
     miniContentPanel(
@@ -33,8 +33,6 @@ nounAddin <- function() {
     icons_selection <- c()
 
     observeEvent(input$done, {
-      timeText <- paste0("\"", as.character(Sys.time()), "\"")
-      #rstudioapi::insertText(timeText)
       rstudioapi::sendToConsole(paste(icons_selection, collapse=","),
                                 execute = F)
       stopApp()
@@ -54,6 +52,11 @@ nounAddin <- function() {
 
       output$images <- renderUI({
         validate(
+          need(!is.null(imlist), message = paste0("Permission error!\nSet your credentials ",
+                                                 "using np_credentials() function\n")
+          )
+        )
+        validate(
           need(length(imurls) != 0, message = paste0("A problem with search occured!\n",
                                                      "Try searching for a different term.\n")
                )
@@ -65,6 +68,7 @@ nounAddin <- function() {
                  obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
                    icons_selection <<- c(icons_selection, x$id)
                    output$selection <- renderText({ icons_selection })
+                   showNotification(paste(x$id, "selected"))
                  })
                  create_image_div(x$id, x$url, img_size)
                 }
