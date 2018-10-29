@@ -1,8 +1,16 @@
 Package: nounprojectR
-Title: What the Package Does (one line, title case)
+Title: Explore & view icons from the Noun Project (https://thenounproject.com/)
 Version: 0.0.1
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("David", "Parr", email = "first.last@example.com", 
+        role = c("aut", "cre")),
+    person("Paul", "Brennan", email = "brennanpincardiff@gmail.com",
+        role = c("ctb")),
+    person("Dominik", "Krzemiński", email = "first.last@example.com", 
+        role = c("ctb")))
+Description: This package views and downloads icons from the Noun Project 
+(https://thenounproject.com/). It includes a R-Studio AddIn to look at the 
+images.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
