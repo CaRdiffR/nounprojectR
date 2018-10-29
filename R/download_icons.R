@@ -10,6 +10,7 @@
 #' res <- get_nouns_api("icon/609")
 #' get_png(res)
 get_png <- function(res_from_api){
+  check_np_response(res_from_api)
   # PNG can be downloaded using image_read() from magick
   png_image <- magick::image_read(httr::content(res_from_api)$icon$preview_url)
   return(png_image)

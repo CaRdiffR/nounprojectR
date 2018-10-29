@@ -1,6 +1,6 @@
 Package: nounprojectR
 Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.5.1)
@@ -10,4 +10,9 @@ LazyData: true
 Suggests: covr, testthat, knitr, rmarkdown,
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
-Imports: magick,httr,reticulate
+Imports: magick,
+  httr,
+  reticulate,
+  shiny (>= 0.13),
+  miniUI (>= 0.1.1),
+  rstudioapi (>= 0.5)
