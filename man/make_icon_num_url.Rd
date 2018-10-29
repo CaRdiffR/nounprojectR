@@ -10,11 +10,8 @@ make_icon_num_url(icon_num)
 \item{icon_num}{a number of the icon you want to download}
 }
 \value{
-the url assembled.
+the url assembled
 }
 \description{
 Make simple authorisation url for one icon number
-}
-\examples{
-url <- make_icon_num_url(1)
 }

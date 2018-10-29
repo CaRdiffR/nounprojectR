@@ -7,7 +7,7 @@
 get_png(res_from_api)
 }
 \arguments{
-\item{res_from_api}{}
+\item{res_from_api}{JSON result from Noun Project API validation}
 }
 \value{
 a PNG pointer that can be shown in the viewer

@@ -8,13 +8,13 @@ make_term_endpoint(term, limit_to_public_domain = 1, num_of_imgs = 2,
   offset = 0)
 }
 \arguments{
-\item{term}{}
+\item{term}{word to use for search}
 
-\item{limit_to_public_domain}{}
+\item{limit_to_public_domain}{restrict licence, change to 0 for not limit}
 
-\item{num_of_imgs}{}
+\item{num_of_imgs}{the number of images required}
 
-\item{offset}{}
+\item{offset}{how many images to ignore, if you want to get different ones}
 }
 \value{
 an url to use with get_nouns_api()
@@ -23,9 +23,14 @@ an url to use with get_nouns_api()
 Making the endpoint for searching Noun Project by Term
 }
 \examples{
-# find four icons of dogs
-url <- make_term_endpoint("dog", num_of_imgs = 4)
+\dontrun{
+# assemble the url to get 4 dog icons
+url <- nounprojectR::make_term_endpoint("dog", num_of_imgs = 4)
+# obtain information from the Noun Project server 
 res <- get_nouns_api(url)
+# extract the JSON file
 result <- httr::content(res)
+# show the images
 get_pngs_and_show(result)
+}
 }

@@ -1,20 +1,24 @@
 #' Making the endpoint for searching Noun Project by Term
 #'
-#' @param id
-#' @param term 
-#' @param limit_to_public_domain 
-#' @param num_of_imgs 
-#' @param offset 
+#' @param term word to use for search
+#' @param limit_to_public_domain restrict licence, change to 0 for not limit
+#' @param num_of_imgs the number of images required
+#' @param offset how many images to ignore, if you want to get different ones
 #'
 #' @return an url to use with get_nouns_api() 
 #' @export
 #'
 #' @examples
-#' # find four icons of dogs
-#' url <- make_term_endpoint("dog", num_of_imgs = 4)
+#' \dontrun{
+#' # assemble the url to get 4 dog icons
+#' url <- nounprojectR::make_term_endpoint("dog", num_of_imgs = 4)
+#' # obtain information from the Noun Project server 
 #' res <- get_nouns_api(url)
+#' # extract the JSON file
 #' result <- httr::content(res)
+#' # show the images
 #' get_pngs_and_show(result)
+#' }
 make_term_endpoint <- function(term,
                                limit_to_public_domain = 1,
                                num_of_imgs = 2,
