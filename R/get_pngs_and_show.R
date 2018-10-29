@@ -19,4 +19,5 @@ get_pngs_and_show <- function(icon_lists) {
     png_images <- c(png_images, icons)
   }
   return(png_images)
-} 
+}
+
