@@ -1,0 +1,98 @@
+---
+title: "Using NounProjectR"
+author: "Paul Brennan on behalf of CaRdiff User Group"
+date: "30/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(nounprojectR)
+library(magick)
+```
+
+## Introduction to nounprojectR
+
+
+To use this package you need to [register with the Noun Project](https://thenounproject.com) and [create an app to get your own key and secret](https://thenounproject.com/developers/apps/). 
+Copy and paste appname, key and secret and replace in this script:
+
+```{r credentials, eval=FALSE}
+# this function puts these details into your system file. You might need to restart R-Studio. 
+np_credentials(your_appname, your_key, your_secret)
+```
+
+## Downloading an icon when you know the number
+
+To find an icon you like, you might search the Noun Project website.
+If you find an image you like, you can note the number of the image. 
+This script will do then allow you to get this into R.  
+
+```{r image_by_number, include=TRUE}
+# this should download and show the icon of a plane
+res <- get_nouns_api("icon/609") 
+get_png(res)
+```
+
+This should display the image of a plane in your viewer. 
+The terms and conditions of the Noun Project indicate that you should 
+give attribution for the image. 
+You can access the attribution using this script. 
+```{r attribution, include=TRUE}
+result <- httr::content(res)
+result$icon$attribution
+```
+
+## To adjust the size in this document
+To display the icon in the document you can alter the out.width arguement in
+the title of the r code. You can make it smaller
+
+```{r make_smaller, echo=FALSE, fig.cap=result$icon$attribution, out.width = '5%'}
+knitr::include_graphics(result$icon$preview_url)
+```
+or larger
+
+```{r make_larger, echo=FALSE, fig.cap=result$icon$attribution, out.width = '25%'}
+knitr::include_graphics(result$icon$preview_url)
+```
+
+
+
+## Downloading multiple icons using a word
+If you want to check out multiple icons using a word, this script will do that. 
+You can replace the word "dog" with something of your choice and you 
+```{r four_dogs, include=TRUE}
+# this should download and show the icon of four dogs
+# make the url
+url <- make_term_endpoint("dog", num_of_imgs = 4)
+# hit the Noun Project server 
+res <- get_nouns_api(url)
+# extract the JSON file
+result <- httr::content(res)
+# show the images
+images <- get_pngs_and_show(result)
+image_append(images)
+```
+
+The image_scale() function from the magick package can be used to change 
+the size of the images too. 
+
+```{r four_dogs_smaller, include=TRUE}
+image_append(image_scale(images, "x50"))
+```
+
+As before, we should add the attributions. 
+These are hard coded at the moment. 
+```{r four_dogs_attributions, echo=FALSE}
+result$icons[[1]]$attribution
+result$icons[[2]]$attribution
+result$icons[[3]]$attribution
+result$icons[[4]]$attribution
+```
+
+
+## Exploring icons with a R-Studio Addin
+@dokato to write something here...
+
+
+Please raise [issues](https://github.com/CaRdiffR/nounprojectR/issues) if you need help or would like to make comments. 
