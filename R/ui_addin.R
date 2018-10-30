@@ -65,11 +65,12 @@ nounAddin <- function() {
         lapply(imurls,
                function(x) {
                  btn_name <- paste0("button", x$id)
-                 obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
-                   icons_selection <<- c(icons_selection, x$id)
-                   output$selection <- renderText({ icons_selection })
-                   showNotification(paste(x$id, "selected"), duration=2)
-                 })
+                 if (!(btn_name %in% names(obs_list)))
+                   obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
+                     icons_selection <<- c(icons_selection, x$id)
+                     output$selection <- renderText({ icons_selection })
+                     showNotification(paste(x$id, "selected"), duration=2)
+                   })
                  create_image_div(x$id, x$url, img_size)
                 }
         )
