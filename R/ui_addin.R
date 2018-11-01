@@ -60,7 +60,7 @@ nounAddin <- function() {
         
         lapply(imurls,
                function(x) {
-                 btn_name <- paste0("button", x$id)\
+                 btn_name <- paste0("button", x$id)
                  if (!(btn_name %in% names(obs_list)))
                    obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
                      icons_selection <<- c(icons_selection, x$id)
