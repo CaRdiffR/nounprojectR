@@ -28,10 +28,12 @@ accessed
 Search Noun Project using a Term using Python authentication
 }
 \examples{
+\dontrun{
 key <- my_key
 secret <- my_secret
 term = "elephant"
 icon_lists <- get_icon_by_term(term)  # gets details of two icons
 elephants <- get_pngs_and_show(icon_lists)  # download icons
 magick::image_append(elephants)  # show icons - two elephants
+}
 }

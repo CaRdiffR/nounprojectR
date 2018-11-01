@@ -1,6 +1,6 @@
 #' Get a PNG file after Noun Project access
 #'
-#' @param res_from_api 
+#' @param res_from_api JSON result from Noun Project API validation
 #'
 #' @return a PNG pointer that can be shown in the viewer 
 #' @export
@@ -27,20 +27,23 @@ get_png <- function(res_from_api){
 #' @export
 #'
 #' @examples
-#' # this will show four icons of dogs
-#' url <- make_term_endpoint("dog", num_of_imgs = 4)
+#' \dontrun{
+#' # assemble the url to get 4 dog icons
+#' url <- nounprojectR::make_term_endpoint("dog", num_of_imgs = 4)
+#' # obtain information from the Noun Project server 
 #' res <- get_nouns_api(url)
+#' # extract the JSON file
 #' result <- httr::content(res)
+#' # show the images
 #' get_pngs_and_show(result)
-get_pngs_and_show <- function(icon_lists){
-  # they all contain PNGs - can be downloaded using image_read() from magick
-  png_images <- magick::image_read(icon_lists$icons[[1]]$preview_url)
-  icons <- NULL
-  for(i in 2:length(icon_lists$icons)){
-    icons <- magick::image_read(icon_lists$icons[[i]]$preview_url)
-    png_images <- c(png_images, icons)
-  }
-  return(png_images)
-}     
-
-
+#' }
+get_pngs_and_show <- function(icon_lists) {
+    # they all contain PNGs - can be downloaded using image_read() from magick
+    png_images <- magick::image_read(icon_lists$icons[[1]]$preview_url)
+    icons <- NULL
+    for (i in 2:length(icon_lists$icons)) {
+        icons <- magick::image_read(icon_lists$icons[[i]]$preview_url)
+        png_images <- c(png_images, icons)
+    }
+    return(png_images)
+}

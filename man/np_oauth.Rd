@@ -4,7 +4,7 @@
 \alias{np_oauth}
 \title{Get an icon by number using Python authentication}
 \usage{
-np_oauth(key, secret, icon_num, python_path = Sys.which("python"))
+np_oauth(key, secret, url, python_path = Sys.which("python"))
 }
 \arguments{
 \item{key}{provided when you register an app on Noun Project website}
@@ -12,6 +12,8 @@ np_oauth(key, secret, icon_num, python_path = Sys.which("python"))
 \item{secret}{provided when you register an app on Noun Project website}
 
 \item{url}{url created by make_icon_num_url() function.}
+
+\item{python_path}{location of python on your computer}
 }
 \value{
 list (JSON object) with links to icons
@@ -20,6 +22,7 @@ list (JSON object) with links to icons
 Get an icon by number using Python authentication
 }
 \examples{
+\dontrun{
 key <- my_key
 secret <- my_secret
 icon_number <- 1
@@ -28,7 +31,5 @@ output <- np_oauth(key, secret, url) # output is a list
 # access PNG using image_read() from magick
 img2 <- magick::image_read(output$icon$preview_url)
 img2  # show image - for icon_number of 1 it is a man putting litter in a bin
-
-
-
+}
 }

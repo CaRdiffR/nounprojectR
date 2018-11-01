@@ -7,11 +7,9 @@
 get_nouns_api(endpoint, baseurl = "http://api.thenounproject.com/")
 }
 \arguments{
-\item{endpoint}{}
+\item{endpoint}{added information for specific urls on Noun Project API}
 
 \item{baseurl}{url for the Noun Project API}
-
-\item{appname}{#'}
 }
 \value{
 JSON object
@@ -20,7 +18,5 @@ JSON object
 Access Noun Project API with authorisation
 }
 \examples{
-
-
 
 }
