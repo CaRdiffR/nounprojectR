@@ -1,5 +1,6 @@
 # nounprojectR
 R package to use the noun project api
+[![Build Status](https://travis-ci.org/CaRdiffR/nounprojectR.svg?branch=master)](https://travis-ci.org/CaRdiffR/nounprojectR)
 
 ## Hacktoberfest 2018 - building an R package to query the noun project api for hacktoberfest!
 
