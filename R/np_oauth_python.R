@@ -3,10 +3,13 @@
 #' @param key provided when you register an app on Noun Project website 
 #' @param secret provided when you register an app on Noun Project website
 #' @param url url created by make_icon_num_url() function.
+#' @param python_path location of python on your computer
+#'
 #'
 #' @return list (JSON object) with links to icons
 #'
 #' @examples
+#' \dontrun{
 #' key <- my_key
 #' secret <- my_secret
 #' icon_number <- 1
@@ -15,10 +18,8 @@
 #' # access PNG using image_read() from magick
 #' img2 <- magick::image_read(output$icon$preview_url)
 #' img2  # show image - for icon_number of 1 it is a man putting litter in a bin
-#' 
-#' 
-#' 
-np_oauth <- function(key, secret, icon_num, python_path = Sys.which("python")){
+#' }
+np_oauth <- function(key, secret, url, python_path = Sys.which("python")){
   # objective here is to download the SVG file from the Noun Project API
   # assumption is that you know the number of the icon that you want...
   # I can't get the authorisation to work in R but I can in python...
@@ -54,12 +55,14 @@ np_oauth <- function(key, secret, icon_num, python_path = Sys.which("python")){
 #' 
 #'
 #' @examples
+#' \dontrun{
 #' key <- my_key
 #' secret <- my_secret
 #' term = "elephant"
 #' icon_lists <- get_icon_by_term(term)  # gets details of two icons
 #' elephants <- get_pngs_and_show(icon_lists)  # download icons
 #' magick::image_append(elephants)  # show icons - two elephants
+#' }
 get_icon_by_term_python <- function(key,
                              secret,
                              term,
@@ -109,10 +112,7 @@ get_icon_by_term_python <- function(key,
 #'
 #' @param icon_num a number of the icon you want to download
 #'
-#' @return the url assembled. 
-#'
-#' @examples
-#' url <- make_icon_num_url(1)
+#' @return the url assembled
 make_icon_num_url <- function(icon_num){
   # objective here is to assemble from the Noun Project API
   # assumption is that you know the number of the icon that you want...

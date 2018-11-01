@@ -12,3 +12,6 @@ check_np_response(resp)
 \description{
 Check Noun Project Response
 }
+\examples{
+
+}

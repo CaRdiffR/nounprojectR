@@ -1,9 +1,8 @@
 #' Access Noun Project API with authorisation
 #'
-#' @param endpoint 
+#' @param endpoint added information for specific urls on Noun Project API
 #' @param baseurl url for the Noun Project API
-#' @param appname
-#'#'
+#' 
 #' @return JSON object
 #' @export
 #'
@@ -22,9 +21,13 @@ get_nouns_api <- function(endpoint,
   httr::GET(url, header_oauth)
 }
 
+
 #' Check Noun Project Response
 #'
 #' @param resp response from np api
+#' 
+#' @examples
+#' 
 check_np_response <- function(resp) {
   if (httr::status_code(resp) == 403)
     stop(paste("NounProject API error - Permission denied.",
