@@ -1,15 +1,7 @@
-# nounprojectR
-R package to use the noun project api
+## nounprojectR
+R package to use the [Noun Project](https://thenounproject.com/) API
+
 [![Build Status](https://travis-ci.org/CaRdiffR/nounprojectR.svg?branch=master)](https://travis-ci.org/CaRdiffR/nounprojectR)
-
-## Hacktoberfest 2018 - building an R package to query the noun project api for hacktoberfest!
-
-[R Packages book by Hadley](http://r-pkgs.had.co.nz/intro.html)
-
-[the noun project](https://thenounproject.com/)
-
-[Hacktoberfest GitHub blog](https://blog.github.com/2018-09-24-hacktoberfest-is-back-and-celebrating-its-fifth-year/)
-
 
 To use this package you need to [register with the Noun Project](https://thenounproject.com) and [create an app to get your own key and secret](https://thenounproject.com/developers/apps/). 
 Copy and paste appname, key and secret and replace in this script:
@@ -35,3 +27,5 @@ get_pngs_and_show(result)
 
 Please raise [issues](https://github.com/CaRdiffR/nounprojectR/issues) if you need help or would like to make comments. 
 
+## A Hacktoberfest 2018 project - building an R package to query the noun project api for hacktoberfest!
+[Hacktoberfest GitHub blog](https://blog.github.com/2018-09-24-hacktoberfest-is-back-and-celebrating-its-fifth-year/)
