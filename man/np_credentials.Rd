@@ -19,3 +19,6 @@ invisibly as System Environmental variables: `NOUNS_API_KEY` and `NOUNS_API_SECR
 \description{
 Set credentials as system variables
 }
+\examples{
+np_credentials("appname", "your-noun-project-key", "your-noun-project-secret")
+}

@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#' np_credentials("appname", "your-noun-project-key", "your-noun-project-secret")
 np_credentials <- function(appname, key, secret) {
   Sys.setenv(NOUNS_API_APPNAME = appname)
   Sys.setenv(NOUNS_API_KEY = key)

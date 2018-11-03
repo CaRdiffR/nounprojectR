@@ -6,11 +6,10 @@ Authors@R: c(
         role = c("aut", "cre")),
     person("Paul", "Brennan", email = "brennanpincardiff@gmail.com",
         role = c("ctb")),
-    person("Dominik", "Krzemiński", email = "first.last@example.com", 
+    person("Dominik", "Krzemiński", email = "raymon92@gmail.com", 
         role = c("ctb")))
 Description: This package views and downloads icons from the Noun Project 
-(https://thenounproject.com/). It includes a R-Studio AddIn to look at the 
-images.
+(https://thenounproject.com/). It includes a R-Studio AddIn to look at the images.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
