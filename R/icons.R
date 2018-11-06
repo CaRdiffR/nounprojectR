@@ -58,6 +58,7 @@ display_icon <- function(icon_number) {
 #' Display many icons
 #' 
 #' Displays first num_of_imgs (default 4) icons from The Noun Project.
+#' It searches through public domain licensed icons only!
 #'
 #' @param icon_name character with name of icon to search in nounproject
 #' @param num_of_imgs number of images to display (default 4)
