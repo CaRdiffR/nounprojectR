@@ -54,3 +54,21 @@ display_icon <- function(icon_number) {
   res <- get_nouns_api(paste0("icon/", icon_number)) 
   get_png(res)
 }
+
+#' Display many icons
+#' 
+#' Displays first num_of_imgs (default 4) icons from The Noun Project.
+#' It searches through public domain licensed icons only!
+#'
+#' @param icon_name character with name of icon to search in nounproject
+#' @param num_of_imgs number of images to display (default 4)
+#'
+#' @return group of images in a PNG format
+#' @export
+display_many_icons <- function(icon_name, num_of_imgs = 4) {
+  url <- make_term_endpoint(icon_name, num_of_imgs = num_of_imgs)
+  res <- get_nouns_api(url)
+  check_np_response(res)
+  result <- httr::content(res)
+  get_pngs_and_show(result)
+}
