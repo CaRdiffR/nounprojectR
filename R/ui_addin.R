@@ -1,9 +1,9 @@
 # Supporting functions
 create_image_div <- function(id, url, img_size) {
   shiny::div(style = "display:inline-block;margin:5px;",
-    tags$img(src = url, width = img_size, height = img_size),
+    shiny::tags$img(src = url, width = img_size, height = img_size),
     shiny::p(id),
-    actionButton(paste0("button",id), "+", style = "margin:1px;")
+    shiny::actionButton(paste0("button",id), "+", style = "margin:1px;")
   )
 }
 
@@ -54,12 +54,12 @@ nounAddin <- function() {
 
       output$images <- shiny::renderUI({
         shiny::validate(
-          need(!is.null(imlist), message = paste0("Permission error!\nSet your credentials ",
+            shiny::need(!is.null(imlist), message = paste0("Permission error!\nSet your credentials ",
                                                  "using np_credentials() function\n")
           )
         )
         shiny::validate(
-          need(length(imurls) != 0, message = paste0("A problem with search occured!\n",
+            shiny::need(length(imurls) != 0, message = paste0("A problem with search occured!\n",
                                                      "Try searching for a different term.\n")
                )
         )
@@ -68,10 +68,10 @@ nounAddin <- function() {
                function(x) {
                  btn_name <- paste0("button", x$id)
                  if (!(btn_name %in% names(obs_list)))
-                   obs_list[[btn_name]] <<- observeEvent(input[[btn_name]], {
+                   obs_list[[btn_name]] <<- shiny::observeEvent(input[[btn_name]], {
                      icons_selection <<- c(icons_selection, x$id)
-                     output$selection <- renderText({ icons_selection })
-                     showNotification(paste(x$id, "selected"), duration=2)
+                     output$selection <- shiny::renderText({ icons_selection })
+                     shiny::showNotification(paste(x$id, "selected"), duration=2)
                    })
                  create_image_div(x$id, x$url, img_size)
                 }

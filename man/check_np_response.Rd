@@ -13,5 +13,5 @@ check_np_response(resp)
 Check Noun Project Response
 }
 \examples{
-
+\dontrun{No example needed}
 }

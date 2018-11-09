@@ -44,7 +44,7 @@ Instead of visiting the [Noun Project website](https://thenounproject.com/) all 
 
 TO run it, simply go to `Addins > Noun Project` in your RStudio.
 
-![Addin](images/rsaddin.png)
+![Addin](man/images/rsaddin.png)
 
 ### Advanced options
 

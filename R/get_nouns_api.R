@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' 
+#' \dontrun{No example needed}
 get_nouns_api <- function(endpoint,
                           baseurl = "http://api.thenounproject.com/") {
   nouns_app <- httr::oauth_app(
@@ -27,7 +27,7 @@ get_nouns_api <- function(endpoint,
 #' @param resp response from np api
 #' 
 #' @examples
-#' 
+#' \dontrun{No example needed}
 check_np_response <- function(resp) {
   if (httr::status_code(resp) == 403)
     stop(paste("NounProject API error - Permission denied.",
